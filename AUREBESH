@@ -1,0 +1,48 @@
+#POSIBLE SOLCUION AL EJERCICIO 68 DE https://retosdeprogramacion.com/ejercicios/
+#Crea una función que sea capaz de transformar Español al lenguaje básico
+# * del universo Star Wars: el "Aurebesh".
+# * - Puedes dejar sin transformar los caracteres que no existan en "Aurebesh".
+# * - También tiene que ser capaz de traducir en sentido contrario.
+# *
+# * ¿Lo has conseguido? Nómbrame en twitter.com/mouredev y escríbeme algo en Aurebesh.
+# *
+# * ¡Que la fuerza os acompañe!
+
+def aurebesh(texto):
+    #Decalaramos las variables
+    diccionario = {"a":"𐐀","b":"𐐁","c":"𐒂","d":"𐒃","e":"𐒆","f":"𐒋","g":"𐒌","h":"𐒍",
+              "i":"𐒎","j":"𐒏","k":"𐒐","l":"𐒑","m":"𐒒","n":"𐒓", "ñ":"ñ", "o":"𐒔",
+               "p":"𐒕","q":"𐒖","r":"𐒗", "s":"𐒘","t":"𐒙","u":"𐒎","v":"𐒚","w":"𐒛",
+               "x":"𐒜","y":"𐒝","z":"𐒞"}
+    global traduccion
+    traduccion = ""
+    diccionario_inverso = {valor:clave for clave, valor in diccionario.items()}
+    
+    #Traductor español -> aurebesh
+    def español_aurebesh(texto):
+        global traduccion
+        
+        for c in texto.lower():
+            if c in diccionario:
+                traduccion += diccionario[c]
+            else:
+                traduccion += " "
+        print(traduccion)
+        return
+    
+    #Traductor aurebesh -> español
+    def aurebesh_español(texto):
+        global traduccion
+        
+        for c in texto:
+            if c in diccionario_inverso:
+                traduccion += diccionario_inverso[c]
+            else:
+                traduccion += " "
+        print(traduccion)
+        return
+    
+    if texto.lower()[0] in diccionario:
+        español_aurebesh(texto.lower())
+    else:
+        aurebesh_español(texto)
